@@ -42,4 +42,4 @@ faça o clone do repositório atual para sua máquina da seguinte forma.
 
 ### Home Page
 
-[locateca.jelasticlw.com.br](locateca.jelasticlw.com.br)
+[locateca.jelasticlw.com.br](http://locateca.jelasticlw.com.br)
