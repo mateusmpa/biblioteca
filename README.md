@@ -15,17 +15,19 @@ faça o clone do repositório atual para sua máquina da seguinte forma.
     git clone https://github.com/mateusmpa/biblioteca.git
 
 ###  Instale todas as dependencias necessárias:
-
+```ruby
     cd biblioteca
     bundle install
+```
 
 ###  Recarregue os arquivos das base de dados:
-
+```ruby
     rake db:reset
     rake db:settings
     rake db:history
-
+```
 
 ### Inicie a aplicação
-
+```ruby
     rails server
+```
