@@ -23,13 +23,13 @@ faça o clone do repositório atual para sua máquina da seguinte forma.
     cd biblioteca
     git clone https://github.com/mateusmpa/biblioteca.git
 
-###  Instale todas as dependencias necessárias:
+###  Instale todas as dependências necessárias:
 ```ruby
     cd biblioteca
     bundle install
 ```
 
-###  Recarregue os arquivos das base de dados:
+###  Recarregue os arquivos da base de dados:
 ```ruby
     rake db:setup
     rake db:migrate
