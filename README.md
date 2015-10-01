@@ -2,7 +2,7 @@
 
 > **Nota:**
 
-> - Locateca é um sistema de gerenciamento de biblioteca totalmente desenvolvimento em ruby.
+> - Locateca é um sistema de gerenciamento de biblioteca totalmente desenvolvido em ruby.
 
 O Sistema de Gerenciamento de Biblioteca deve:
 
