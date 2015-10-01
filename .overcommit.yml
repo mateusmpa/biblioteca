@@ -1,0 +1,34 @@
+PreCommit:
+  ALL:
+    problem_on_unmodified_line: warn
+    requires_files: true
+    required: false
+    quiet: false
+
+  BundleCheck:
+    enabled: true
+
+  Brakeman:
+    enabled: true
+
+  LocalPathsInGemfile:
+    enabled: true
+
+  RuboCop:
+    enabled: true
+    command: ['bundle', 'exec', 'rubocop']
+    include:
+      - '**/*.gemspec'
+      - '**/*.rb'
+      - '**/Gemfile'
+      - template-dir/hooks/overcommit-hook
+
+  SomeHook:
+    enabled: true
+
+  YamlSyntax:
+    enabled: true
+
+PrePush:
+  RSpec:
+    enabled: true

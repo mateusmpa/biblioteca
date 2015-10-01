@@ -2,7 +2,7 @@
 
 > **Nota:**
 
-> - Locateca é um sistema de gerenciamento de biblioteca totalmente desenvolvimento em ruby.
+> - Locateca é um sistema de gerenciamento de biblioteca totalmente desenvolvido em ruby.
 
 O Sistema de Gerenciamento de Biblioteca deve:
 
@@ -23,13 +23,13 @@ faça o clone do repositório atual para sua máquina da seguinte forma.
     cd biblioteca
     git clone https://github.com/mateusmpa/biblioteca.git
 
-###  Instale todas as dependencias necessárias:
+###  Instale todas as dependências necessárias:
 ```ruby
     cd biblioteca
     bundle install
 ```
 
-###  Recarregue os arquivos das base de dados:
+###  Recarregue os arquivos da base de dados:
 ```ruby
     rake db:setup
     rake db:migrate
