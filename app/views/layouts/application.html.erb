@@ -12,6 +12,20 @@
   </head>
   <body>
     <div class="ls-topbar">
+
+    <div class="ls-notification-topbar">
+      <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
+        <a href="#" class="ls-ico-user"><%#<%= user %> Nome do Usuário </a>
+        <nav class="ls-dropdown-nav ls-user-menu">
+        <ul>
+          <li>
+          <a href="/logout" class="help-suggestions ico-help-circle hidden-xs"><strong><%= t('report.logout') %></strong></a>
+          </li>
+        </ul>
+        </nav>
+      </div>
+    </div>
+
       <span class="ls-show-sidebar ls-ico-menu"></span>
       <!-- Nome do produto/marca -->
       <h1 class="ls-brand-name"><a class="ls-ico-book" href="/"><%= link_to SECRETS["site"]["name"], root_path, title: SECRETS["site"]["name"] %></h1>
