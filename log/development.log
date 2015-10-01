@@ -201,3 +201,11 @@ Completed 200 OK in 48ms (Views: 46.5ms | ActiveRecord: 0.2ms)
             WHERE name='index_comments_on_post_id' AND type='index'
 [0m
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-10-01 13:29:00 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.1ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 229ms (Views: 218.6ms | ActiveRecord: 0.3ms)
