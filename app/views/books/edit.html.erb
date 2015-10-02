@@ -1,0 +1,37 @@
+<h1>Editando Livro</h1>
+
+<% form_for(@books) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :Autor %><br />
+    <%= f.text_field :author %>
+  </p>
+  <p>
+    <%= f.label :Título %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :Descrição %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :Versão %><br />
+    <%= f.text_field :release %>
+  </p>
+  <p>
+    <%= f.label :Linguagem %><br />
+    <%= f.text_field :language %>
+  </p>
+  <p>
+    <%= f.label :Editora %><br />
+    <%= f.date_select :publishing_house %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @book %> |
+<%= link_to 'Back', book_path %>
