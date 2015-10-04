@@ -1,8 +1,33 @@
-<h1><%= @book.title %></h1>
-<p>
-  <%= @book.author %><br>
-  <%= @book.description %><br>
-  <%= @book.release %><br>
-  <%= @book.language %><br>
-  <%= @book.publishing_house %><br>
-</p>
+<div class="container-fluid">
+      <h1 class="ls-title-intro ls-ico-book">Livro</h1>
+
+<div class="ls-box">
+<div class="row">
+  <div class="col-md-12">
+    <div class="ls-box">
+      <p><strong>Titulo do Livro</strong></p>
+      <p class="ls-break-text"><%= @book.title %></p>
+      <hr>
+      <p><strong>Autor</strong></p>
+      <p class="ls-break-text"><%= @book.author %></p>
+      <hr>
+      <p><strong>Descricao</strong></p>
+      <p class="ls-break-text"><%= @book.description %></p>
+      <hr>
+      <p><strong>Versao</strong></p>
+      <p class="ls-break-text"><%= @book.release %></p>
+      <hr>
+      <p><strong>Versao</strong></p>
+      <p class="ls-break-text"><%= @book.language %></p>
+      <hr>
+      <p><strong>Editora</strong></p>
+      <p class="ls-break-text"><%= @book.publishing_house %></p>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+

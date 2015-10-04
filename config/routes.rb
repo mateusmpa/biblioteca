@@ -3,6 +3,4 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show, :new, :edit]
   resources :comments
   resources :summaries
-
-
 end
