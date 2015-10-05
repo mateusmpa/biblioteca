@@ -1,34 +1,44 @@
 <div class="container-fluid">
       <h1 class="ls-title-intro ls-ico-book">Cadastrar livro</h1>
 
-<form action="" class="ls-form row">
+
+
+ <%= form_for(@book, html: { class: "ls-form ls-form-horizontal row" }) do |f| %>
   <fieldset>
-    <label class="ls-label col-md-3">
-      <b class="ls-label-text">Nome</b>
-          <input type="text" name="nome" placeholder="Nome e sobrenome" required >
-    </label>
-    <label class="ls-label col-md-4">
-      <b class="ls-label-text">E-mail</b>
-      <input type="text" name="email" placeholder="Escreva seu email" required >
-    </label>
-    <label class="ls-label col-md-5">
-      <b class="ls-label-text">Rua</b>
-      <input type="text" name="rua" placeholder="O nome da sua rua" required >
-   </label>
+    <div class="row">
+      <div class="col-md-8">
+        <label class="ls-label col-md-6">
+          <span class="ls-label-text"><%= f.label :author, "Autor", class: "ls-label col-md-4" %></span>
+          <%= f.text_field :author , class: "ls-label col-md-3", placeholder: "O nome da sua rua" %>
+        </label>
+      </div>
+    </div>
 
-    <label class="ls-label col-md-6">
-      <b class="ls-label-text">Descricao</b>
-      <textarea rows="4"></textarea>
-      <p class="ls-helper-text">Preencha informações adicionais do seu cliente. Ex.: Dados de contato, endereço, etc.</p>
-    </label>
+    <div class="row">
+      <div class="col-md-8">
+        <label class="ls-label col-md-6">
+          <span class="ls-label-text"><%= f.label :author, "Autor", class: "ls-label col-md-4" %></span>
+          <%= f.text_field :author , class: "ls-label col-md-3", placeholder: "O nome da sua rua" %>
+        </label>
+      </div>
+    </div>
 
+  <div class="col-md-8">
+      <%= f.submit t('submit'), class: "ls-btn-primary" %>
+      <%= link_to 'Back', books_path, class: "ls-btn" %>
+  </div>
+
+
+
+ 
+ </div>
 
   </fieldset>
+<% end %>
 
 
-   <div class="ls-actions-btn">
-    <button class="ls-btn">Salvar</button>
-    <button class="ls-btn-danger">Excluir</button>
-  </div>
-  </form>
- </div>
+
+
+ 
+
+

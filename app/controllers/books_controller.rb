@@ -15,7 +15,6 @@ end
 def edit
   @book = Book.find(params[:id])
   @books = Book.all
-  render :action => 'index'
 end
 
 def create
