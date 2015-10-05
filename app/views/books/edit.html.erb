@@ -1,38 +1,10 @@
-<h1>Editando Livro</h1>
+<div class="container-fluid">
+      <h1 class="ls-title-intro ls-ico-book">Editar livro</h1>
 
-<%= form_for(@book) do |f| %>
- 
+<%= render 'form' %>
 
-  <p>
-    <%= f.label :author %><br />
-    <%= f.text_field :author %>
-  </p>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :release, "Versão" %> <br />
-    <%= f.text_field :release %>
-  </p>
-  <p>
-    <%= f.label :language, "Linguagem:" %><br />
-    <%= f.text_field :language %>
-  </p>
-  <p>
-    <%= f.label :publishing_house, "Editora:" %><br />
-    <%= f.text_field :publishing_house %>
-  </p>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
 
-<%= link_to 'Show', @book %> |
-<%= link_to 'Back', book_path %>
+
+</div>
 

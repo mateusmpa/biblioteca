@@ -1,5 +1,5 @@
-<div class="container-fluid">
-      <h1 class="ls-title-intro ls-ico-book">Livros</h1>
+
+<h1 class="ls-title-intro ls-ico-book">Livros</h1>
 
 <% @books.each do |book| %>
 <div class="ls-list">
@@ -22,5 +22,10 @@
 </div>
 <% end %>
 
+  <div class="ls-pagination-filter ">
 
-</div>
+     <%= link_to 'Voltar', books_path, class: "ls-btn-darker" %>
+  </div>
+
+
+

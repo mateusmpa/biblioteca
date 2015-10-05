@@ -1,44 +1,6 @@
 <div class="container-fluid">
-      <h1 class="ls-title-intro ls-ico-book">Cadastrar livro</h1>
+      <h1 class="ls-title-intro ls-ico-book">Editar livro</h1>
 
+<%= render 'form' %>
 
-
- <%= form_for(@book, html: { class: "ls-form ls-form-horizontal row" }) do |f| %>
-  <fieldset>
-    <div class="row">
-      <div class="col-md-8">
-        <label class="ls-label col-md-6">
-          <span class="ls-label-text"><%= f.label :author, "Autor", class: "ls-label col-md-4" %></span>
-          <%= f.text_field :author , class: "ls-label col-md-3", placeholder: "O nome da sua rua" %>
-        </label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-8">
-        <label class="ls-label col-md-6">
-          <span class="ls-label-text"><%= f.label :author, "Autor", class: "ls-label col-md-4" %></span>
-          <%= f.text_field :author , class: "ls-label col-md-3", placeholder: "O nome da sua rua" %>
-        </label>
-      </div>
-    </div>
-
-  <div class="col-md-8">
-      <%= f.submit t('submit'), class: "ls-btn-primary" %>
-      <%= link_to 'Back', books_path, class: "ls-btn" %>
-  </div>
-
-
-
- 
- </div>
-
-  </fieldset>
-<% end %>
-
-
-
-
- 
-
-
+</div>
