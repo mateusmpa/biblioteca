@@ -1,9 +1,7 @@
 class CreateSummaries < ActiveRecord::Migration
   def change
     create_table :summaries do |t|
-      t.string :name
-      t.string :title
-      t.text :content
+      t.text :body
 
       t.timestamps null: false
     end
