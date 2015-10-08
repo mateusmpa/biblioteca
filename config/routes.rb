@@ -4,7 +4,10 @@ Rails.application.routes.draw do
  # get 'logout', to: 'dashboard#logout'
 
   root 'books#index'
-  resources :books, only: [:index, :show, :new, :edit]
+  resources :books
   resources :comments
   resources :summaries
+
+
+
 end

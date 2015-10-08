@@ -2,6 +2,7 @@
 <h1 class="ls-title-intro ls-ico-book">Livros</h1>
 
 <% @books.each do |book| %>
+
 <div class="ls-list">
   <header class="ls-list-header">
     <div class="ls-list-title col-md-9">
@@ -11,7 +12,7 @@
   </header>
   <div class="ls-list-content ">
     <div class="col-xs-12 col-md-6">
-      <span class="ls-list-label">Autor</span>
+        <span class="ls-list-label">Autor</span>
       <strong><%= book.author %></strong>
     </div>
     <div class="col-xs-12 col-md-6">
@@ -22,10 +23,6 @@
 </div>
 <% end %>
 
-  <div class="ls-pagination-filter ">
-
-     <%= link_to 'Voltar', books_path, class: "ls-btn-darker" %>
-  </div>
-
-
-
+<div class="ls-pagination-filter ">
+     <%= link_to 'Novo Livro', new_book_path(@book) , class: "ls-btn-darker" %>
+</div>
