@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :books
   resources :comments
   resources :summaries
+  resources :settings
 
 
 
