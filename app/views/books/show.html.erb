@@ -1,6 +1,5 @@
-
 <h1 class="ls-title-intro ls-ico-book">Livro</h1>
-
+<%= form_for(@book, html: { class: "ls-form row" }) do |f| %>
 <div class="ls-box">
 <div class="row">
   <div class="col-md-12">
@@ -29,3 +28,5 @@
 
 <%= link_to 'Edit', edit_book_path(@book) , class: "ls-btn-darker" %>
 <%= link_to 'Voltar', books_path, class: "ls-btn-darker" %>
+
+<% end %>
