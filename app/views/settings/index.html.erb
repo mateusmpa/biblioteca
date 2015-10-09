@@ -1,34 +1,31 @@
 <h1 class="ls-title-intro ls-ico-cog">Configurações</h1>
 
-<%= form_for(@setting, html: { class: "ls-form row" }) do |f| %>
+<% @settings.each do |setting| %>
 <div class="ls-box">
 <div class="row">
   <div class="col-md-12">
     <div class="ls-box">
       <p><strong>Nome do site</strong></p>
-      <p class="ls-break-text"><%= @settings.name %></p>
+      <p class="ls-break-text"><%= setting.name %></p>
       <hr>
       <p><strong>Título</strong></p>
-      <p class="ls-break-text"><%= @setting.title %></p>
+      <p class="ls-break-text"><%= setting.title %></p>
       <hr>
       <p><strong>Domínio</strong></p>
-      <p class="ls-break-text"><%= @setting.domain %></p>
+      <p class="ls-break-text"><%= setting.domain %></p>
       <hr>
       <p><strong>URL</strong></p>
-      <p class="ls-break-text"><%= @setting.url %></p>
+      <p class="ls-break-text"><%= setting.url %></p>
       <hr>
       <p><strong>Email</strong></p>
-      <p class="ls-break-text"><%= @setting.email %></p>
+      <p class="ls-break-text"><%= setting.email %></p>
       <hr>
     </div>
   </div>
 </div>
 </div>
 
-
 <div class="ls-pagination-filter ">
-<%= link_to 'Edit', edit_setting_path(@setting) , class: "ls-btn-darker" %>
-<%= link_to 'Voltar', settings_path, class: "ls-btn-darker" %>
-
+<%= link_to 'Edit', edit_setting_path(@settings) , class: "ls-btn-darker" %>
 </div>
 <% end %>

@@ -14,8 +14,9 @@
       <p class="ls-break-text"><%= @book.description %></p>
       <hr>
       <p><strong>Versão</strong></p>
-      <p class="ls-break-text"><%= @book.release %></p>
-      <hr>
+      <p class="ls-break-text"><%= @book.release.to_formatted_s %></p>
+
+           <hr>
       <p><strong>Linguagem</strong></p>
       <p class="ls-break-text"><%= @book.language %></p>
       <hr>
