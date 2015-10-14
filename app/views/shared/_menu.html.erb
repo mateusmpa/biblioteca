@@ -18,7 +18,7 @@
                 <li><a class="ls-submenu-item" href=""> Emprestados </a></li>
            </ul>
            <ul>
-                <li><a class="ls-submenu-item" href=""> Lista de Livros </a></li>
+                <li><%= link_to 'Listar Livros', books_path, class: "ls-submenu-item" %></li>
            </ul>
       </li>
 
@@ -44,9 +44,11 @@
        </li>
 
       <li >
-        <a class="ls-ico-cog" href="">  Configurações </a>
+          <%= link_to 'Configurações', settings_path, class: "ls-ico-cog" %>
        </li>
 
     </ul>
   </nav>
 </aside>
+
+
