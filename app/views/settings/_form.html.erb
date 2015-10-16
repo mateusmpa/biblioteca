@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col-md-8">
         <label class="ls-label col-md-4">
-        <span class="ls-label-text"><%= f.label :email, "URL" %></span>
+        <span class="ls-label-text"><%= f.label :email, "Email" %></span>
         <%= f.text_field :email %>
         </label>
       </div>
@@ -50,7 +50,7 @@
     <div class="row">
       <div class="col-md-8">
             <%= f.button  "Salvar", :type => "submit" , class: "ls-btn-primary"%>
-         <%= f.submit "Limpar", :type => "reset",  class: "ls-btn-primary" %>
+
          <%= link_to 'Voltar', settings_path, class: "ls-btn-darker" %>
     </div>
     </div>
