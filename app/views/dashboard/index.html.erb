@@ -3,13 +3,15 @@
 <%= render 'shared/notification' %>
 
 <div class="ls-box-filter" style="background-color: white; border:0">
-  <form  action="" class="ls-form ls-form-inline ls-float-right" >
+  <%= form_tag(books_path, :method => "get", class: "ls-form ls-form-inline ls-float-right", id: "search-form") do %>
     <label class="ls-label" role="search">
       <b class="ls-label-text ls-hidden-accessible">Busca por livro</b>
-      <input type="text" id="q" name="q" aria-label="Faça sua busca por livro" placeholder="Busca por livro" required="" class="ls-field">
+
+       <%= text_field_tag :search, params[:search], class: "ls-field", placeholder: "Busca por livro" %>
     </label>
     <div class="ls-actions-btn">
       <input type="submit" value="Buscar" class="ls-btn" title="Buscar">
+      <% end %>
     </div>
   </form>
 </div>
@@ -17,7 +19,7 @@
 <div class="ls-box ls-board-box" >
   <header class="ls-info-header"  >
     <h2 class="ls-title-3">Estatísticas de Livros</h2>
-    <p class="ls-float-right ls-float-none-xs ls-small-info">Período de <strong>20/07/2014</strong> de <strong>27/07/2014</strong></p>
+    <p class="ls-float-right ls-float-none-xs ls-small-info">Período de <strong> <%=@seven_days_ago%> </strong> de <strong><%=@today%> </strong></p>
   </header>
 <div id="sending-stats" class="row">
 

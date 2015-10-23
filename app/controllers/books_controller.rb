@@ -2,6 +2,11 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   def index
     @books = Book.all
+    if params[:search]
+    @books = Book.search(params[:search]).order("created_at DESC")
+    else
+    @books = Book.all.order('created_at DESC')
+    end
   end
 
   def show
