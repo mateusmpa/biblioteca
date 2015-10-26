@@ -16,7 +16,7 @@ class SettingsController < ApplicationController
   def update
     respond_to do |format|
       if @setting.update(setting_params)
-        format.html { redirect_to @setting, notice: 'Livro atualizado com sucesso.' }
+        format.html { redirect_to @setting, notice: 'Configuração atualizada com sucesso.' }
       else
         format.html { render :edit }
        end
@@ -32,3 +32,5 @@ class SettingsController < ApplicationController
       params[:setting].permit(:name, :title, :domain, :url, :email )
     end
 end
+
+

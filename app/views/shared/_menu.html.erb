@@ -3,7 +3,7 @@
     <ul>
 
       <li>
-        <a class="ls-ico-home" href="#"> Painel Inicial </a>
+          <%= link_to 'Painel Inicial', dashboard_index_path , class: "ls-ico-dashboard" %>
       </li>
 
       <li class="ls-submenu">
@@ -43,9 +43,16 @@
         <a class="ls-ico-user-add" href="">  Administradores </a>
        </li>
 
-      <li >
-          <%= link_to 'Configurações', settings_path, class: "ls-ico-cog" %>
-       </li>
+
+      <li class="ls-submenu">
+        <a class="ls-ico-cog" href="">  Configurações </a>
+        <ul>
+           <li><%= link_to 'Configurações do Painel', settings_path, class: "ls-submenu-item" %></li>
+        </ul>
+        <ul>
+           <li><%= link_to 'Dados do servidor SMTP', smtp_settings_path, class: "ls-submenu-item" %></li>
+        </ul>
+      </li>
 
     </ul>
   </nav>
