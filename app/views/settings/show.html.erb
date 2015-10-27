@@ -1,6 +1,7 @@
-<%= form_for(@setting, html: { class: "ls-form row" }) do |f| %>
-
 <h1 class="ls-title-intro ls-ico-cog">Configurações</h1>
+<%= render 'shared/notification' %>
+
+<%= form_for(@setting, html: { class: "ls-form row" }) do |f| %>
 
 <div class="ls-box">
 <div class="row">
