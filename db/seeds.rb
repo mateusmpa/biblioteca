@@ -8,6 +8,12 @@
 
 puts ''
 
+puts 'Creating authors for test...'
+Author.create! :name => "collins",  :bio => "Teste 1"
+Author.create! :name => "Devin",  :bio => "Teste 2"
+Author.create! :name => "Alvin Brain", :bio => "Teste 3"
+
+
 puts 'Creating books for test...'
 Book.create! :title => "Harry Potter", :author => "collins", :description => "Teste de description Harry Potter", :release => "2015-07-07", :language => "Portugues", :publishing_house => "Nova Terra"
 Book.create! :title => "Capitain", :author => "Devin", :description => "Teste de description Capitain", :release => "2014-02-10", :language => "Portugues", :publishing_house => "Editora Lua"
