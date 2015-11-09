@@ -1,0 +1,86 @@
+<h1 class="ls-title-intro ls-ico-dashboard">Dashboard</h1>
+
+<%= render 'shared/notification' %>
+
+<div class="ls-box-filter" style="background-color: white; border:0">
+  <%= form_tag(books_path, :method => "get", class: "ls-form ls-form-inline ls-float-right", id: "search-form") do %>
+    <label class="ls-label" role="search">
+      <b class="ls-label-text ls-hidden-accessible">Busca por livro</b>
+
+       <%= text_field_tag :search, params[:search], class: "ls-field", placeholder: "Busca por livro" %>
+    </label>
+    <div class="ls-actions-btn">
+      <input type="submit" value="Buscar" class="ls-btn" title="Buscar">
+      <% end %>
+    </div>
+  </form>
+</div>
+
+<div class="ls-box ls-board-box" >
+  <header class="ls-info-header"  >
+    <h2 class="ls-title-3">Estatísticas de Livros</h2>
+    <p class="ls-float-right ls-float-none-xs ls-small-info">Período de <strong> <%=@seven_days_ago%> </strong> de <strong><%=@today%> </strong></p>
+  </header>
+<div id="sending-stats" class="row">
+
+    <div class="col-sm-6 col-md-3 " >
+        <div class="ls-box" style="background-color: white">
+           <div class="ls-alert-warning ls-md-space">
+               <div class="col-md-2 ls-txt-center">
+                 <span class="ls-ico-alone ls-ico-text"></span>
+               </div>
+              <strong>36</strong>
+              <small>Emprestados</small>
+           </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3 " >
+        <div class="ls-box" style="background-color: white">
+           <div class="ls-alert-success ls-md-space">
+               <div class="col-md-2 ls-txt-center">
+                 <span class="ls-ico-alone ls-ico-book"></span>
+               </div>
+              <strong><%= @new_books %> </strong>
+              <small>Novos Livros</small>
+           </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3 " >
+        <div class="ls-box" style="background-color: white">
+           <div class="ls-alert-info ls-md-space">
+               <div class="col-md-2 ls-txt-center">
+                 <span class="ls-ico-alone ls-ico-docs"></span>
+               </div>
+              <strong> <%= @total_books %>  </strong>
+              <small>Livros cadastrados</small>
+           </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3 " >
+        <div class="ls-box" style="background-color: white">
+           <div class="ls-alert-danger ls-md-space">
+               <div class="col-md-2 ls-txt-center">
+                 <span class="ls-ico-alone ls-ico-text2"></span>
+               </div>
+              <strong>15</strong>
+              <small>Em atraso</small>
+           </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="ls-box ls-lg-space ls-ico-book ls-ico-bg">
+  <h1 class="ls-title-1 ls-color-theme">Cadastre um novo Livro no sistema</h1>
+       <%= link_to 'Novo Livro', new_book_path(@book) , class: "ls-btn-primary" %>
+</div>
+
+
+
+
+
+

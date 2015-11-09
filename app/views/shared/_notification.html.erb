@@ -1,0 +1,12 @@
+<% if flash[:notice] %>
+  <div class="ls-alert-success ls-dismissable">
+    <span data-ls-module="dismiss" class="ls-dismiss">&times;</span>
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:error] %>
+  <div class="ls-alert-danger ls-dismissable">
+    <span data-ls-module="dismiss" class="ls-dismiss">&times;</span>
+    <strong><%= flash[:error].fetch(:title).html_safe %></strong>
+    <p><%= flash[:error].fetch(:desc).html_safe %></p>
+  </div>
+<% end %>
