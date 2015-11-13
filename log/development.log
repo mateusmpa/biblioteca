@@ -41199,3 +41199,617 @@ Completed 200 OK in 41ms (Views: 39.6ms | ActiveRecord: 0.5ms)
             FROM sqlite_temp_master
             WHERE name='index_comments_on_post_id' AND type='index'
 [0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateAuthors (20151026220956)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bio" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151026220956"]]
+  [1m[36m (197.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRelationBookAuthors (20151113193151)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "relation_book_authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151113193151"]]
+  [1m[36m (156.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddBookRefToRelationBookAuthors (20151113193700)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "relation_book_authors" ADD "book_id" integer[0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_relation_book_authors_on_book_id" ON "relation_book_authors" ("book_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151113193700"]]
+  [1m[36m (154.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddAuthorRefToRelationBookAuthors (20151113193734)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "relation_book_authors" ADD "author_id" integer[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_relation_book_authors_on_book_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_relation_book_authors_on_book_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_relation_book_authors_on_author_id" ON "relation_book_authors" ("author_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151113193734"]]
+  [1m[36m (154.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_relation_book_authors_on_author_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_relation_book_authors_on_author_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_relation_book_authors_on_book_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_relation_book_authors_on_book_id' AND type='index'
+[0m
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:23:49 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BooksController#new as HTML
+  Rendered books/_form.html.erb (8.9ms)
+  Rendered books/new.html.erb within layouts/application (11.5ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (undefined method `collect' for nil:NilClass):
+    15:       <div class="col-md-8">
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.select :author_id, @authors.collect{ |m| [ m.name, m.id ] }, class: "form-control", multiple: true %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+  app/views/books/_form.html.erb:18:in `block in _app_views_books__form_html_erb___508712379771647604_42224060'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb___508712379771647604_42224060'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb___1266122315955145540_42452740'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (35.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (14.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (32.1ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:26:40 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BooksController#new as HTML
+  Rendered books/_form.html.erb (9.8ms)
+  Rendered books/new.html.erb within layouts/application (12.5ms)
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (undefined method `author_id' for #<Book:0x00000004224c10>):
+    15:       <div class="col-md-8">
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.select :author_id, @authors, class: "form-control", multiple: true %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+  app/views/books/_form.html.erb:18:in `block in _app_views_books__form_html_erb__1754760412483104293_33843900'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb__1754760412483104293_33843900'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb__2159547570383293252_33954060'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (21.5ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (12.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (24.9ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:30:29 -0200
+Processing by BooksController#new as HTML
+  Rendered books/_form.html.erb (17.3ms)
+  Rendered books/new.html.erb within layouts/application (17.8ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (undefined method `empty?' for nil:NilClass):
+    15:       <div class="col-md-8">
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.select :authors, @authors, class: "form-control", multiple: true %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+  app/views/books/_form.html.erb:18:in `block in _app_views_books__form_html_erb__1754760412483104293_34763060'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb__1754760412483104293_34763060'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb__2159547570383293252_33954060'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.1ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (12.5ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (24.7ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:34:52 -0200
+Processing by BooksController#new as HTML
+  Rendered books/_form.html.erb (2.9ms)
+  Rendered books/new.html.erb within layouts/application (3.4ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (undefined method `empty?' for nil:NilClass):
+    15:       <div class="col-md-8">
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.select :title %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+  app/views/books/_form.html.erb:18:in `block in _app_views_books__form_html_erb__1754760412483104293_70141228304660'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb__1754760412483104293_70141228304660'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb__2159547570383293252_33954060'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.9ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (11.8ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (23.3ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:34:53 -0200
+Processing by BooksController#new as HTML
+  Rendered books/_form.html.erb (1.4ms)
+  Rendered books/new.html.erb within layouts/application (1.8ms)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `empty?' for nil:NilClass):
+    15:       <div class="col-md-8">
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.select :title %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+  app/views/books/_form.html.erb:18:in `block in _app_views_books__form_html_erb__1754760412483104293_70141228304660'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb__1754760412483104293_70141228304660'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb__2159547570383293252_33954060'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.0ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (24.9ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (12.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (24.0ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:34:56 -0200
+Processing by BooksController#new as HTML
+  Rendered books/_form.html.erb (1.6ms)
+  Rendered books/new.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `empty?' for nil:NilClass):
+    15:       <div class="col-md-8">
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.select :title %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+  app/views/books/_form.html.erb:18:in `block in _app_views_books__form_html_erb__1754760412483104293_70141228304660'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb__1754760412483104293_70141228304660'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb__2159547570383293252_33954060'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.9ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (12.1ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (24.3ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:35:56 -0200
+Processing by BooksController#new as HTML
+  [1m[35mAuthor Load (0.1ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered books/_form.html.erb (10.1ms)
+  Rendered books/new.html.erb within layouts/application (10.8ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (undefined method `colection_select' for #<ActionView::Helpers::FormBuilder:0x0000000462ef68>):
+    15:       <div class="col-md-8">
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.colection_select :title %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+  app/views/books/_form.html.erb:18:in `block in _app_views_books__form_html_erb__1754760412483104293_37053140'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb__1754760412483104293_37053140'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb__2159547570383293252_33954060'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.9ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (24.6ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (12.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (24.2ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:37:31 -0200
+Processing by BooksController#new as HTML
+  Rendered books/_form.html.erb (2.3ms)
+  Rendered books/new.html.erb within layouts/application (2.8ms)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (wrong number of arguments (1 for 4..6)):
+    15:       <div class="col-md-8">
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.collection_select :title %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+  app/views/books/_form.html.erb:18:in `block in _app_views_books__form_html_erb__1754760412483104293_70141223780280'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb__1754760412483104293_70141223780280'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb__2159547570383293252_33954060'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.8ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (12.1ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (24.0ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:40:03 -0200
+Processing by BooksController#new as HTML
+  [1m[36mAuthor Load (0.2ms)[0m  [1mSELECT "authors".* FROM "authors"[0m
+  Rendered books/_form.html.erb (12.1ms)
+  Rendered books/new.html.erb within layouts/application (12.5ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Market):
+    16:         <label class="ls-label col-md-6">
+    17:         <span class="ls-label-text"><%= f.label :author, "Autor" %></span>
+    18:         <%= f.collection_select :authors, @authors, :id, :name %>
+    19:         <!--<%= f.select(:type_of_business, Market.get_markets.collect {|m| [ m.name, m.id] }, class: "form-control", id: "list-markets", multiple: true) %> -->
+    20:       </label>
+    21:      </div>
+    22:     </div>
+  app/views/books/_form.html.erb:19:in `block in _app_views_books__form_html_erb__1754760412483104293_35776860'
+  app/views/books/_form.html.erb:1:in `_app_views_books__form_html_erb__1754760412483104293_35776860'
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb__2159547570383293252_33954060'
+
+
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.7ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (25.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (12.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/mateusalves/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (24.1ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:40:17 -0200
+Processing by BooksController#new as HTML
+  [1m[35mAuthor Load (0.1ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered books/_form.html.erb (3.4ms)
+  Rendered books/new.html.erb within layouts/application (3.8ms)
+  Rendered shared/_menu.html.erb (0.8ms)
+Completed 200 OK in 388ms (Views: 387.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:40:18 -0200
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:40:18 -0200
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:40:18 -0200
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:40:18 -0200
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:41:16 -0200
+Processing by BooksController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors"[0m
+  Rendered books/_form.html.erb (3.6ms)
+  Rendered books/new.html.erb within layouts/application (4.1ms)
+  Rendered shared/_menu.html.erb (0.2ms)
+Completed 200 OK in 56ms (Views: 55.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+Processing by BooksController#new as HTML
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered books/_form.html.erb (7.7ms)
+  Rendered books/new.html.erb within layouts/application (8.4ms)
+  Rendered shared/_menu.html.erb (0.2ms)
+Completed 200 OK in 54ms (Views: 52.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:44 -0200
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+Processing by BooksController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors"[0m
+  Rendered books/_form.html.erb (2.4ms)
+  Rendered books/new.html.erb within layouts/application (2.8ms)
+  Rendered shared/_menu.html.erb (0.2ms)
+Completed 200 OK in 33ms (Views: 32.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-11-13 18:41:50 -0200
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+Processing by BooksController#new as HTML
+  [1m[35mAuthor Load (0.1ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered books/_form.html.erb (2.5ms)
+  Rendered books/new.html.erb within layouts/application (3.1ms)
+  Rendered shared/_menu.html.erb (0.3ms)
+Completed 200 OK in 40ms (Views: 39.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:28 -0200
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:43:34 -0200
+Processing by BooksController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors"[0m
+  Rendered books/_form.html.erb (4.2ms)
+  Rendered books/new.html.erb within layouts/application (4.7ms)
+  Rendered shared/_menu.html.erb (0.6ms)
+Completed 200 OK in 57ms (Views: 55.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:35 -0200
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BooksController#new as HTML
+  [1m[35mAuthor Load (0.1ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered books/_form.html.erb (23.9ms)
+  Rendered books/new.html.erb within layouts/application (26.7ms)
+  Rendered shared/_menu.html.erb (0.7ms)
+Completed 200 OK in 202ms (Views: 175.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-11-13 18:43:57 -0200
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:45:17 -0200
+Processing by BooksController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors"[0m
+  Rendered books/_form.html.erb (2.9ms)
+  Rendered books/new.html.erb within layouts/application (3.3ms)
+  Rendered shared/_menu.html.erb (0.2ms)
+Completed 200 OK in 57ms (Views: 56.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+Processing by BooksController#new as HTML
+  [1m[35mAuthor Load (0.1ms)[0m  SELECT "authors".* FROM "authors"
+  Rendered books/_form.html.erb (4.4ms)
+  Rendered books/new.html.erb within layouts/application (4.8ms)
+  Rendered shared/_menu.html.erb (0.4ms)
+Completed 200 OK in 53ms (Views: 52.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2015-11-13 18:46:45 -0200
